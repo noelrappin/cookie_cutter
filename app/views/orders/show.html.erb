@@ -1,0 +1,14 @@
+<div>Order number <% @order.id %></div>
+
+<div>From: <%= @order.buyer.name %></div>
+<div>To: <%= @order.recipient.name %></div>
+
+<% @order.line_items.each do |line_item| %>
+  <div>
+    <%= line_item.item.name %>
+    <%= line_item.quantity %>
+    <%= humanized_money_with_symbol(line_item.cost_in_money) %>
+  </div>
+<% end %>
+
+<div>Total: <%= humanized_money_with_symbol(@order.cost_in_money) %></div>

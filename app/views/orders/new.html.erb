@@ -1,0 +1,40 @@
+<h1 class="text-4xl font-bold">Order Your Cookies</h1>
+
+<%= form_with(model: Order.new) do |f| %>
+
+<div class="text-xl font-bold">Select Your Sender</div>
+
+  <%=
+    f.select(
+      :buyer_id,
+      options_from_collection_for_select(Person.sorted, :id, :name)
+    )
+  %>
+
+  <div class="text-xl font-bold">Choose Your Items</div>
+
+  <% Item.all.sort_by { _1.name }.each do |item| %>
+    <div>
+      <div class="text-xl"><%=  item.name %></div>
+      <div>
+        <%= number_field_tag("order[items][#{item.id}]", min: 0) %>
+      </div>
+    </div>
+
+
+  <% end %>
+
+  <div class="text-xl font-bold">Select Your Recipient</div>
+
+  <%=
+    f.select(
+      :recipient_id,
+      options_from_collection_for_select(Person.sorted, :id, :name)
+    )
+  %>
+
+  <div class="mt-12 <%= button_class %> w-2/12">
+    <%= f.submit %>
+  </div>
+
+<% end %>
