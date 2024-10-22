@@ -18,6 +18,7 @@ gem "rails", github: "rails/rails", branch: "main"
 gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
+gem "sorbet-static-and-runtime"
 gem "sqlite3", ">= 2.1"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
@@ -41,4 +42,5 @@ group :development, :test do
   gem "rspec-rails"
   gem "standard"
   gem "standard-rails"
+  gem "tapioca", require: false
 end
