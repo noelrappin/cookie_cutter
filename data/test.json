@@ -1,0 +1,12 @@
+[
+  {
+    "buyer_id": 1,
+    "recipient_id": 1,
+    "line_items": [
+      {
+        "item_name": "Chocolate Chip",
+        "quantity": 2
+      }
+    ]
+  }
+]
