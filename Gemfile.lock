@@ -100,6 +100,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    abbrev (0.1.2)
     amazing_print (1.6.0)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
@@ -247,6 +248,8 @@ GEM
       nokogiri (~> 1.14)
     rainbow (3.1.1)
     rake (13.2.1)
+    rbs (3.4.0)
+      abbrev
     rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
@@ -412,6 +415,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails!
+  rbs
   rspec-collection_matchers
   rspec-rails
   solid_cable

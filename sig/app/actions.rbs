@@ -1,0 +1,17 @@
+class BatchCheckout
+  @filename: String
+
+  def process: -> void
+  def buyer: (order_data: Hash[String, String]) -> Person
+  def recipient: (order_data: Hash[String, String]) -> String
+  def line_items: (order_data: Hash[String, String]) -> Array[LineItem]
+end
+
+class CheckoutAction
+  def checkout: (
+      buyer: Person,
+      recipient: Person,
+      line_items: Array[LineItem],
+      ?promotions: Array[String]
+    ) -> void
+end

@@ -15,6 +15,7 @@ gem "kamal", require: false
 gem "propshaft"
 gem "puma", ">= 5.0"
 gem "rails", github: "rails/rails", branch: "main"
+gem "rbs"
 gem "solid_cable"
 gem "solid_cache"
 gem "solid_queue"
