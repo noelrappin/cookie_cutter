@@ -20,5 +20,21 @@
 class Person < ApplicationRecord
   belongs_to :address
 
+  def self.from(object)
+    if object.is_a?(GlobalID)
+      object = object.find
+    end
+    case object
+    when Integer
+      Person.find(object)
+    when String
+      Person.find_by(email: object)
+    when Person
+      object
+    else
+      raise "#{object} isn't a user"
+    end
+  end
+
   def self.sorted = all.sort_by { _1.name }
 end

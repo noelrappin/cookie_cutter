@@ -10,7 +10,7 @@ class BatchCheckout
     data.each do |order_data|
       CheckoutAction.new.checkout(
         buyer: buyer(order_data),
-        recipient: recipient(order_data),
+        recipient_or_id: recipient(order_data),
         line_items: line_items(order_data)
       )
     end
