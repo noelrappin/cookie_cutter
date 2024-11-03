@@ -8,11 +8,11 @@ class BatchCheckout
   def process
     data = JSON.load_file(filename)
     data.each do |order_data|
-      CheckoutAction.new.checkout(
+      CheckoutAction.new(
         buyer: buyer(order_data),
         recipient: recipient(order_data),
         line_items: line_items(order_data)
-      )
+      ).checkout
     end
   end
 

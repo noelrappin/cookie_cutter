@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = CheckoutAction.new.checkout(
+    @order = CheckoutAction.new(
       buyer: Person.find(order_params[:buyer_id]),
       recipient: Person.find(order_params[:buyer_id]),
       line_items: line_items
-    )
+    ).checkout
 
     if @order.save
       redirect_to @order, notice: "Person was successfully created."
