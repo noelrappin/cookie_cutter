@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/joeldrapper/literal.git
+  revision: 70b2de9a270738fe6dc4dc990e8884836bea794e
+  branch: ruby-mine
+  specs:
+    literal (1.1.0)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 701af3732145d5b1e598466bd73eb63b5ac21674
   branch: main
@@ -408,6 +415,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  literal!
   money-rails
   propshaft
   puma (>= 5.0)

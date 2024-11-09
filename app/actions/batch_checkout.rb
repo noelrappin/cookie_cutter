@@ -11,7 +11,8 @@ class BatchCheckout
       CheckoutAction.new(
         buyer: buyer(order_data),
         recipient: recipient(order_data),
-        line_items: line_items(order_data)
+        line_items: line_items(order_data),
+        promotions: []
       ).checkout
     end
   end

@@ -12,6 +12,7 @@ gem "jbuilder"
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
+gem "literal", git: "https://github.com/joeldrapper/literal.git", branch: "ruby-mine"
 gem "propshaft"
 gem "puma", ">= 5.0"
 gem "rails", github: "rails/rails", branch: "main"
