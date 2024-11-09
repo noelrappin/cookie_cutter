@@ -8,11 +8,16 @@ class BatchCheckout
   def process
     data = JSON.load_file(filename)
     data.each do |order_data|
-      CheckoutAction.new(
+      model = CheckoutModel.new(
         buyer: buyer(order_data),
         recipient: recipient(order_data),
         line_items: line_items(order_data)
-      ).checkout
+      )
+      unless model.valid?
+        puts "Bad model"
+        next
+      end
+      CheckoutAction.new(model).checkout
     end
   end
 

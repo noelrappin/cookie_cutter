@@ -1,16 +1,15 @@
 class CheckoutAction
-  attr_reader :buyer, :recipient, :line_items, :promotions
+  attr_reader :checkout_model, :success
 
-  def initialize(buyer:, recipient:, line_items:, promotions: [])
-    @buyer = buyer
-    @recipient = recipient
-    @line_items = line_items
-    @promotions = promotions
+  def initialize(checkout_model)
+    @checkout_model = checkout_model
+    @success = false
   end
 
   def checkout
-    ManagePayment.new(buyer, recipient, line_items, promotions).manage_payment
-    Order.create(buyer:, recipient:, line_items:)
-    HandleShipping.new(recipient, line_items).handle_shipping
+    ManagePayment.new(checkout_model).manage_payment
+    checkout_model.create_order
+    HandleShipping.new(checkout_model).handle_shipping
+    @success = true
   end
 end

@@ -4,13 +4,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = CheckoutAction.new(
+    model = CheckoutModel.new(
       buyer: Person.find(order_params[:buyer_id]),
       recipient: Person.find(order_params[:buyer_id]),
       line_items: line_items
-    ).checkout
+    )
+    action = CheckoutAction.new(model)
+    action.checkout
 
-    if @order.save
+    if action.success?
       redirect_to @order, notice: "Person was successfully created."
     else
       render :new, status: :unprocessable_entity

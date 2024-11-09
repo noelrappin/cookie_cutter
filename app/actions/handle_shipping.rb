@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class HandleShipping
-  attr_reader :recipient, :line_items
+  attr_reader :checkout_model
 
-  def initialize(recipient, line_items)
-    @recipient = recipient
-    @line_items = line_items
+  def initialize(checkout_model)
+    @checkout_model
   end
 
   def handle_shipping
-    Rails.logger.warn("I need to print a label for #{recipient.address}")
+    Rails.logger.warn("I need to print a label for #{checkout_model.recipient.address}")
   end
 end

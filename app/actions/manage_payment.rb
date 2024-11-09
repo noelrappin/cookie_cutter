@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class ManagePayment
-  attr_reader :buyer, :recipient, :line_items, :promotions
+  attr_reader :checkout_model
 
-  def initialize(buyer, recipient, line_items, promotions)
-    @buyer = buyer
-    @recipient = recipient
-    @line_items = line_items
-    @promotions = promotions
+  def initialize(checkout_model)
+    @checkout_model = checkout_model
   end
 
   def manage_payment
-    total = line_items.sum { _1.cost_in_money }
-    Rails.logger.warn("#{buyer.name} is being charged #{total}")
+    Rails.logger.warn("#{buyer.name} is being charged #{checkout_model.total}")
   end
 end
