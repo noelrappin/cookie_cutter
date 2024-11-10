@@ -9,8 +9,16 @@ class CheckoutAction
   end
 
   def checkout
-    ManagePayment.new(buyer, recipient, line_items, promotions).manage_payment
+    if buyer.nil?
+      Rails.logger.warn("There is no buyer")
+      return
+    end
+    if recipient.nil?
+      Rails.logger.warn("There is no recipient")
+      return
+    end
     Order.create(buyer:, recipient:, line_items:)
+    ManagePayment.new(buyer, recipient, line_items, promotions).manage_payment
     HandleShipping.new(recipient, line_items).handle_shipping
   end
 end

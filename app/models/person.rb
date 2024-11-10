@@ -21,4 +21,8 @@ class Person < ApplicationRecord
   belongs_to :address
 
   def self.sorted = all.sort_by { _1.name }
+
+  def tax_status
+    "something"
+  end
 end

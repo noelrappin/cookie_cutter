@@ -9,6 +9,13 @@ class HandleShipping
   end
 
   def handle_shipping
-    Rails.logger.warn("I need to print a label for #{recipient.address}")
+    case recipient.preferred_shipping_type
+    when "ups_Ground"
+      p "Preparing a UPS ground label for #{recipient.address}"
+    when "usps"
+      p "Preparing a USPS ground label for #{recipient.address}"
+    when "po_box"
+      p "Alert that this may have delivery problems for #{recipient.address} "
+    end
   end
 end

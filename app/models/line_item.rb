@@ -26,4 +26,12 @@ class LineItem < ApplicationRecord
   def cost_in_cents = item.price_in_cents * quantity
 
   def cost_in_money = Money.from_cents(cost_in_cents, "USD")
+
+  def us_tax_rate(buyer)
+    cost_in_cents * 0.08
+  end
+
+  def ca_tax_rate(buyer)
+    cost_in_cents * 0.10
+  end
 end
