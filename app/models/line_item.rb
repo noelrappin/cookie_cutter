@@ -27,11 +27,25 @@ class LineItem < ApplicationRecord
 
   def cost_in_money = Money.from_cents(cost_in_cents, "USD")
 
-  def us_tax_rate(buyer)
-    cost_in_cents * 0.08
+  def tax_rate_object(buyer)
+    if buyer.tax_exempt?
+      UnTaxed.new(line_item: self, buyer:)
+    elsif buyer.us_based?
+      UsTaxRate.new(line_item: self, buyer:)
+    elsif buyer.canada_based?
+      CaTaxRate.new(line_item: self, buyer:)
+    end
   end
 
-  def ca_tax_rate(buyer)
-    cost_in_cents * 0.10
+  UsTaxRate = Data.define(:buyer, :line_item) do
+    def tax = line_item.cost_in_cents * 0.08
+  end
+
+  CaTaxRate = Data.define(:buyer, :line_item) do
+    def tax = line_item.cost_in_cents * 0.10
+  end
+
+  UnTaxed = Data.define(:buyer, :line_item) do
+    def tax = 0
   end
 end

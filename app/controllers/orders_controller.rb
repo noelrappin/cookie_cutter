@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = CheckoutAction.new(
-      buyer: Person.find(order_params[:buyer_id]),
-      recipient: Person.find(order_params[:buyer_id]),
+      buyer: Person.maybe(Person.find(order_params[:buyer_id])),
+      recipient: Person.maybe(Person.find(order_params[:buyer_id])),
       line_items: line_items
     ).checkout
 
